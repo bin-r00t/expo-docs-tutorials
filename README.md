@@ -13,10 +13,10 @@
 - [x] Create your first app
 - [x] Add navigation
 - [x] Build a screen
-- [] Use an image picker
-- [] Create a modal
-- [] Add gestures
-- [] Take a screenshot
-- [] Handle platform differences
-- [] Configure status bar, splash screen and app icon
-- [] Learning resoures
+- [ ] Use an image picker
+- [ ] Create a modal
+- [ ] Add gestures
+- [ ] Take a screenshot
+- [ ] Handle platform differences
+- [ ] Configure status bar, splash screen and app icon
+- [ ] Learning resoures
