@@ -1,18 +1,19 @@
 import { Tabs } from "expo-router";
-import React from "react";
-
-import { TabBarIcon } from "@/components/navigation/TabBarIcon";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
+// import { Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+  // return <Text>Hleo</Text>;
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false
+        tabBarActiveTintColor: "#ffd33d",
+        headerStyle: { backgroundColor: "#25292e" },
+        headerShadowVisible: false,
+        headerTintColor: "#fff",
+        tabBarStyle: {
+          backgroundColor: "#25292e",
+        },
       }}
     >
       <Tabs.Screen
@@ -20,21 +21,25 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
+            <Ionicons
+              name={focused ? "home-sharp" : "home-outline"}
               color={color}
+              size={24}
             />
           ),
         }}
       />
       <Tabs.Screen
-        name="explore2"
+        name="about"
         options={{
-          title: "Explore",
+          title: "About",
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "code-slash" : "code-slash-outline"}
+            <Ionicons
+              name={
+                focused ? "information-circle" : "information-circle-outline"
+              }
               color={color}
+              size={24}
             />
           ),
         }}
