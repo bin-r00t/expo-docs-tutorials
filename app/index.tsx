@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pressable, View, Text, StyleSheet } from "react-native";
 import IconButton from "@/components/AddFriendScreen/IconButton";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import reactLogo from "@/assets/images/react-logo.png";
 import { useFonts } from "expo-font";
+import * as SplashScreen from "expo-splash-screen";
+
+SplashScreen.preventAutoHideAsync();
 
 type Props = {
   children: React.ReactNode;
 };
 
 export default function Index({ children }: Props) {
+  const [loaded, error] = useFonts({
+    "JosefinSans-Regular": require("@/assets/fonts/JosefinSans/JosefinSans-Regular.ttf"),
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
+
   return (
     <View style={styles.screen}>
       <View style={styles.buttonGrp}>
@@ -21,7 +38,7 @@ export default function Index({ children }: Props) {
       </View>
       <View style={styles.usernameButtonContainer}>
         <Pressable
-          android_ripple={{ color: "#ededed99" }}
+          android_ripple={{ color: "#e3e3e3" }}
           style={(pressed) => [
             styles.usernameButton,
             pressed && styles.usernameButtonPressed,
@@ -43,13 +60,32 @@ export default function Index({ children }: Props) {
       <View style={styles.discoverFriendsCard}>
         <Image source={reactLogo} style={{ width: 100, height: 100 }} />
         <Text style={styles.discoverFriendTitle}>发现您的好友</Text>
-        <Text style={styles.discoverFriendDesc}>
+        <Text
+          style={[
+            styles.discoverFriendDesc,
+            { fontFamily: "JosefinSans-Regular" },
+          ]}
+        >
           Sync your phone contacts to find people you know on Discord. (Learn
           More)
         </Text>
-        <Pressable style={styles.discoverFriendButton}>
-          <Text style={styles.discoverFriendButtonLabel}>Find friends</Text>
-        </Pressable>
+        <View style={styles.discoverFriendButton}>
+          <Pressable
+            android_ripple={{ color: "#6162f1" }}
+            style={{
+              padding: 12,
+            }}
+          >
+            <Text
+              style={[
+                styles.discoverFriendButtonLabel,
+                { fontFamily: "JosefinSans-Regular" },
+              ]}
+            >
+              Find friends
+            </Text>
+          </Pressable>
+        </View>
       </View>
     </View>
   );
@@ -75,6 +111,7 @@ const styles = StyleSheet.create({
     marginVertical: 24,
     backgroundColor: "white",
     borderRadius: 18,
+    overflow: "hidden",
   },
   usernameButton: {
     padding: 16,
@@ -109,21 +146,22 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   discoverFriendDesc: {
-    fontSize: 14,
-    lineHeight: 20,
+    fontSize: 16,
+    lineHeight: 26,
     textAlign: "center",
     color: "#616263",
-    fontFamily: 'JosefinSans_400Regular',
+    marginBottom: 12
   },
   discoverFriendButton: {
     backgroundColor: "#6169ff",
     width: "100%",
-    padding: 12,
-    borderRadius: 24,
+    overflow: "hidden",
+    borderRadius: 28,
   },
   discoverFriendButtonLabel: {
     textAlign: "center",
     color: "#fff",
-    fontSize: 16,
+    fontSize: 18,
+    paddingBottom: 4,
   },
 });
