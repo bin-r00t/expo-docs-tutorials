@@ -10,9 +10,7 @@ export default function PlaygroundScreen() {
   return (
     <View className="flex-1 bg-gray-100">
       <Banner title={banner.title} description={banner.description} />
-      {/* <View className="m-2 rounded-3xl p-12 bg-blue-200">
-        <Text>Lorem ipsum dolor sit.</Text>
-      </View> */}
+      <Banner title={banner.title} image="234" />
     </View>
   );
 }
